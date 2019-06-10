@@ -32,9 +32,14 @@ requirejs(['jquery', 'ramda'], ($, { compose, curry, map, prop }) => {
 
     const img = src => $('<img />', { src });
 
+    const mediaToImg = compose(
+        img,
+        mediaUrl,
+    );
+
     const images = compose(
-        map(img),
-        mediaUrls,
+        map(mediaToImg),
+        prop('items'),
     );
 
     const render = compose(
